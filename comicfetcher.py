@@ -50,13 +50,19 @@ def down(episode, page, imgLink):
     if not os.path.isdir(path):
         os.mkdir(path)
     else:
-        imgData = getData(imgLink)
         try:
-            with open(fullpath, 'wb') as imgFile:
-                imgFile.write(imgData)
-            print('Page %s downloaded.' % page)
+            imgData = getData(imgLink)
+            try:
+                with open(fullpath, 'wb') as imgFile:
+                    imgFile.write(imgData)
+                print('Page %s downloaded.' % page)
+            except:
+                print('Failed to write %s to hard disk.' % page)
         except:
-            print('Failed to download page %s' % page)
+            print('Failed to download page %s with link %s' % (page, imgLink))
+            failedBox[episode][page] = imgLink
+    with open(os.path.join(os.environ['PWD'], 'Failed.json'), 'w') as failedListFile:
+        json.dump(failedBox, failedListFile)
 
 
 def getAuth():
@@ -72,6 +78,7 @@ def getAuth():
 
 refBox = {}
 linkBox = {}
+failedBox = {}
 print('A script used to fetch comics from comic.ck101.com')
 jsonPath = os.path.join(os.environ['PWD'], 'ComicLinks.json')
 if os.path.exists(jsonPath) == True:
