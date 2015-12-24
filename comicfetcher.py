@@ -46,6 +46,7 @@ def getPath(episode, page, imgLink):
 
 
 def down(episode, page, imgLink):
+    global failedBox
     path, fullpath = getPath(episode, page, imgLink)
     if not os.path.isdir(path):
         os.mkdir(path)
