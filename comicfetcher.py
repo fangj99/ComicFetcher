@@ -59,6 +59,20 @@ def down(episode, page, imgLink):
             print('Failed to download page %s' % page)
 
 
+def getAuth():
+    global linkBox
+    auth = input('All finished. Start downloading? (y/n)')
+    if auth is not 'y':
+        raise PermissionError
+    for ep, value in linkBox.items():
+        print('Start downloading episode %s' % ep)
+        for pg, url in value.items():
+            down(ep, pg, url)
+            if pg % 5 == 0:
+                print('Delay for 5 seconds.')
+                time.sleep(5)
+
+
 refBox = {}
 linkBox = {}
 print('A script used to fetch comics from comic.ck101.com')
@@ -86,13 +100,4 @@ if __name__ == '__main__':
             print('All page links in episode %s have been analyzed.' % episode)
         else:
             print('Episode %s not found.' % episode)
-    getAuth = input('All finished. Start downloading? (y/n)')
-    if getAuth is not 'y':
-        raise PermissionError
-    for ep, value in linkBox.items():
-        print('Start downloading episode %s' % ep)
-        for pg, url in value.items():
-            down(ep, pg, url)
-            if pg % 5 == 0:
-                print('Delay for 5 seconds.')
-                time.sleep(5)
+    getAuth()
