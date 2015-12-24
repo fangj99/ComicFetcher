@@ -55,7 +55,7 @@ def down(episode, page, imgLink):
             with open(fullpath, 'wb') as imgFile:
                 imgFile.write(imgData)
                 print('Page %s downloaded.' % page)
-            except:
+        except:
             print('Failed to write %s to hard disk.' % page)
 
 
@@ -74,7 +74,7 @@ def getAuth():
                 print('failed to download %s:%s:%s' % (ep, pg, url))
                 failedBox[ep][pg] = url
                 with open(os.path.join(os.environ[PWD], 'failed.json'), 'w') as failedFile:
-                    json.dump(failedBox, failedBox)
+                    json.dump(failedBox, failedFile)
 
 
 refBox = {}
