@@ -109,6 +109,8 @@ if __name__ == '__main__':
             with open(jsonPath, 'w') as file:
                 json.dump(linkBox, file)
             print('All page links in episode %s have been analyzed.' % episode)
+            with open(jsonPath, 'r') as file:
+                linkBox = json.load(file)
         else:
             print('Episode %s not found.' % episode)
     getAuth()
