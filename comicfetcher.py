@@ -93,3 +93,6 @@ if __name__ == '__main__':
         print('Start downloading episode %s' % ep)
         for pg, url in value.items():
             down(ep, pg, url)
+            if pg % 5 == 0:
+                print('Delay for 5 seconds.')
+                time.sleep(5)
