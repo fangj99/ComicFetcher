@@ -46,35 +46,32 @@ def getPath(episode, page, imgLink):
 
 
 def down(episode, page, imgLink):
-    global failedBox
     path, fullpath = getPath(episode, page, imgLink)
     if not os.path.isdir(path):
         os.mkdir(path)
     else:
+        imgData = getData(imgLink)
         try:
-            imgData = getData(imgLink)
-            try:
-                with open(fullpath, 'wb') as imgFile:
-                    imgFile.write(imgData)
+            with open(fullpath, 'wb') as imgFile:
+                imgFile.write(imgData)
                 print('Page %s downloaded.' % page)
             except:
-                print('Failed to write %s to hard disk.' % page)
-        except:
-            print('Failed to download page %s with link %s' % (page, imgLink))
-            failedBox[episode][page] = imgLink
-    with open(os.path.join(os.environ['PWD'], 'Failed.json'), 'w') as failedListFile:
-        json.dump(failedBox, failedListFile)
+            print('Failed to write %s to hard disk.' % page)
 
 
 def getAuth():
-    global linkBox
+    global linkBox, failedBox
     auth = input('Seems great. Start downloading? (y/n)')
     if auth is not 'y':
         raise PermissionError
     for ep, value in linkBox.items():
         print('Start downloading episode %s' % ep)
         for pg, url in value.items():
-            down(ep, pg, url)
+            try:
+                down(ep, pg, url)
+            except HTTPError as e:
+                print(e)
+                print('failed to download %s:%s:%s' % (ep, pg, url))
 
 
 refBox = {}
