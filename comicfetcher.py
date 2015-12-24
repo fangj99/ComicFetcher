@@ -75,12 +75,15 @@ linkBox = {}
 print('A script used to fetch comics from comic.ck101.com')
 jsonPath = os.path.join(os.environ['PWD'], 'ComicLinks.json')
 if os.path.exists(jsonPath) == True:
-    with open(jsonPath, 'r') as saveSession:
-        linkBox = json.load(saveSession)
-    print('Saved session found.')
-    getAuth()
-    print('Downloading finished. Hooray!')
-    quit()
+    with open(jsonPath, 'r') as savedSession:
+        linkBox = json.load(savedSession)
+    userInput = input('Saved session found. Download now?(y/n)')
+    if userInput == 'y':
+        getAuth()
+        print('Downloading finished. Hooray!')
+        quit()
+    elif userInput == 'n':
+        print('Okay. Go on.')
 regEx = input('Regular Expression?')
 coverLink = input('Cover Link?')
 print('Automatically save session to', jsonPath)
