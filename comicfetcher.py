@@ -61,7 +61,7 @@ def down(episode, page, imgLink):
 
 def getAuth():
     global linkBox
-    auth = input('All finished. Start downloading? (y/n)')
+    auth = input('Seems great. Start downloading? (y/n)')
     if auth is not 'y':
         raise PermissionError
     for ep, value in linkBox.items():
@@ -77,13 +77,13 @@ jsonPath = os.path.join(os.environ['PWD'], 'ComicLinks.json')
 if os.path.exists(jsonPath) == True:
     with open(jsonPath, 'r') as savedSession:
         linkBox = json.load(savedSession)
-    userInput = input('Saved session found. Download now?(y/n)')
+    userInput = input('Saved session found. Move on?(y/n)')
     if userInput == 'y':
         getAuth()
         print('Downloading finished. Hooray!')
         quit()
     elif userInput == 'n':
-        print('Okay. Go on.')
+        print('Okay. Go on')
 regEx = input('Regular Expression?')
 coverLink = input('Cover Link?')
 print('Automatically save session to', jsonPath)
