@@ -69,11 +69,10 @@ def getAuth():
         for pg, url in value.items():
             try:
                 down(ep, pg, url)
-            except HTTPError as e:
-                print(e)
-                print('failed to download %s:%s:%s' % (ep, pg, url))
-                failedBox[ep][pg] = url
-                with open(os.path.join(os.environ[PWD], 'failed.json'), 'w') as failedFile:
+            except:
+                print('Failed to download %s:%s\t%s' % (ep, pg, url))
+                failedBox[ep] = pg
+                with open(os.path.join(os.environ['PWD'], 'failed.json'), 'w') as failedFile:
                     json.dump(failedBox, failedFile)
 
 
@@ -82,7 +81,7 @@ linkBox = {}
 failedBox = {}
 print('A script used to fetch comics from comic.ck101.com')
 jsonPath = os.path.join(os.environ['PWD'], 'ComicLinks.json')
-if os.path.exists(jsonPath) == True:
+if os.path.exists(jsonPath) is True:
     with open(jsonPath, 'r') as savedSession:
         linkBox = json.load(savedSession)
     userInput = input('Saved session found. Move on?(y/n)')
