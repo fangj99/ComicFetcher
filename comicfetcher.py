@@ -76,9 +76,14 @@ def getAuth():
 refBox = {}
 linkBox = {}
 print('A script used to fetch comics from comic.ck101.com')
+jsonPath = os.path.join(os.environ['PWD'], 'ComicLinks.json')
+if os.path.exists(jsonPath) == True:
+    with open(jsonPath, 'r') as saveSession:
+        linkBox = json.loads(saveSession)
+    print('Saved session found.')
+    getAuth()
 regEx = input('Regular Expression?')
 coverLink = input('Cover Link?')
-jsonPath = os.path.join(os.environ['PWD'], 'ComicLinks.json')
 print('Automatically save session to', jsonPath)
 
 if __name__ == '__main__':
