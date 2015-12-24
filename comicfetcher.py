@@ -72,6 +72,9 @@ def getAuth():
             except HTTPError as e:
                 print(e)
                 print('failed to download %s:%s:%s' % (ep, pg, url))
+                failedBox[ep][pg] = url
+                with open(os.path.join(os.environ[PWD], 'failed.json'), 'w') as failedFile:
+                    json.dump(failedBox, failedBox)
 
 
 refBox = {}
