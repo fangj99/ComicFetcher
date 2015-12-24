@@ -1,5 +1,5 @@
 from urllib import request, parse
-import re, time, json, os
+import re, json, os
 
 
 def getData(url):
@@ -96,9 +96,6 @@ if __name__ == '__main__':
                 imgLink = getImage(refBox[episode], page)
                 linkBox[episode][page] = imgLink
                 print('Episode %s Page %s: %s' % (episode, page, imgLink))
-                if page % 5 == 0:
-                    print('Delay for 5 seconds.')
-                    time.sleep(5)
             with open(jsonPath, 'w') as file:
                 json.dump(linkBox, file)
             print('All page links in episode %s have been analyzed.' % episode)
