@@ -68,9 +68,6 @@ def getAuth():
         print('Start downloading episode %s' % ep)
         for pg, url in value.items():
             down(ep, pg, url)
-            if pg % 5 == 0:
-                print('Delay for 5 seconds.')
-                time.sleep(5)
 
 
 refBox = {}
@@ -79,9 +76,11 @@ print('A script used to fetch comics from comic.ck101.com')
 jsonPath = os.path.join(os.environ['PWD'], 'ComicLinks.json')
 if os.path.exists(jsonPath) == True:
     with open(jsonPath, 'r') as saveSession:
-        linkBox = json.loads(saveSession)
+        linkBox = json.load(saveSession)
     print('Saved session found.')
     getAuth()
+    print('Downloading finished. Hooray!')
+    quit()
 regEx = input('Regular Expression?')
 coverLink = input('Cover Link?')
 print('Automatically save session to', jsonPath)
