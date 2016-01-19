@@ -1,5 +1,7 @@
 # ComicFetcher
 A crawler to collect comics from http://comic.ck101.com
+
+__Please go to [DriveIt](https://github.com/XIAZY/DriveIt), a smarter crawler I wrote which can support multiple websites.__
 # Usage
 Simply run this script with ```Python 3```. Input the regular expression and cover link when asked. The script will handle all the jobs.
 
@@ -8,6 +10,8 @@ All files are dowloaded in the same working directory with subdirectories named 
 I completely understand that English-speaking people won't use this crawler. Just scroll down for Chinese explanation.
 # 总览
 这是一个用于下载 http://comic.ck101.com 上漫画的爬虫。估计也没什么人看我就随便写写了。
+
+__请前往 [DriveIt](https://github.com/XIAZY/DriveIt)，我正在开发的一个更加智能好用、易于维护且支持多个网站的爬虫。__
 
 需要 ``Python 3`` 和一些关于正则表达式的知识。
 # 用法
